@@ -71,18 +71,22 @@
             //  for the height 
 
             let heightCounts = selectorSplittedHeightArray
+         heightCounts.sort(function(a, b) {
+            return a - b;
+          });
             heightGoal = height.value
             let heightGoalBefore = heightGoal
 
-            // console.log('heightGoal Before ', heightGoal)
+            console.log('heightGoal Before ', heightCounts)
 
             var heightClosest =heightCounts.reduce(function(prev, curr) {
-                return (Math.abs(curr - heightGoal) < Math.abs(prev - heightGoal) ? curr : prev);
+           
+                return (curr > heightGoal && prev <heightGoal && prev != heightGoal )||  curr == heightGoal  ? curr : prev;
             });
 
             heightGoalAfter = parseInt(heightClosest)
 
-            // console.log('heightgoal after' ,heightClosest)
+            console.log('heightgoal after' ,heightClosest)
 
 
             let ifHeightISLess = heightGoalAfter -   heightGoalBefore 
@@ -102,14 +106,16 @@
             //  for the width 
 
         let widthCounts = selectorSplittedWidthArray
+        widthCounts.sort(function(a, b) {
+            return a - b;
+          });
             widthGoal = width.value
             let widthGoalBefore = widthGoal
 
             // console.log('widthGoal Before ', widthGoalBefore)
 //180
             var widthClosest =widthCounts.reduce(function(prev, curr) {
-                // console.log("widthGoal=>"+widthGoal+" curr"+curr+" prev"+prev);
-                return (Math.abs(curr - widthGoal) < Math.abs(prev - widthGoal) ? curr : prev);
+                return (curr > widthGoal && prev <widthGoal && prev != widthGoal )||  curr == widthGoal  ? curr : prev;
             });
 
             widthGoalAfter = parseInt(widthClosest)
@@ -205,4 +211,5 @@
                     height.style.color = 'red'
                 }
             }
+
         })
